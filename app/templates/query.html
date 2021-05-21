@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/querystyle.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+          crossorigin="anonymous">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <form action="{{ url_for('search') }}" method="POST" role="search" autocomplete="off">
+        <input class="toggle" name="svd" type="checkbox" checked/>
+        <input type="search" name="search-input" placeholder="Search...">
+        <i class="fa fa-search"></i>
+    </form>
+    {% if doc_iter %}
+        <div class="results">
+            {% for doc in doc_iter %}
+                <p>
+                    <a class="result-link" href="{{ doc.link }}">{{ doc.name }}</a>
+                </p>
+            {% endfor %}
+        </div>
+    {% endif %}
+{#    add footer #}
+{#    {% if found %}#}
+{#        <div class="results">#}
+{#            <h1>Something found! Searched for: {{ searched }}</h1>#}
+{#        </div>#}
+{#    {% else %}#}
+{#        <div class="results">#}
+{#            <h1>Nothing found! Searched for: {{ searched }}</h1>#}
+{#        </div>#}
+{#    {% endif %}#}
+</body>
+</html>
